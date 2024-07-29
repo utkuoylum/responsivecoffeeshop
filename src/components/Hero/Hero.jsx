@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import { motion } from "framer-motion";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const bgImage = {
   backgroundImage: "url(/bg-slate.png)",
@@ -13,12 +14,14 @@ const bgImage = {
 };
 
 const Hero = () => {
+  const [isSidabarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <main style={bgImage}>
-      <section className="min-h-[550px] w-full">
+      <section className=" relative min-h-[550px] w-full">
         <div className="container">
           {/* navbar section */}
-          <Navbar />
+          <Navbar sidebar={() => setIsSidebarOpen(!isSidabarOpen)} />
           {/* hero section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center min-h-[550px]">
             {/* text content section  */}
@@ -62,16 +65,17 @@ const Hero = () => {
             </div>
             {/* hero image section  */}
             <div className="relative">
-              <motion.div 
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 10,
-                delay: 0.4,
-              }}
-              className="relative z-40 h-[300px] aspect-[1/2] md:h-[500px]">
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 10,
+                  delay: 0.4,
+                }}
+                className="relative z-40 h-[300px] aspect-[1/2] md:h-[500px]"
+              >
                 <Image
                   className="img-shadow"
                   src="/black.png"
@@ -80,24 +84,45 @@ const Hero = () => {
                 ></Image>
               </motion.div>
               {/* orange ring circle */}
-              <div className="h-[180px] w-[180px] absolute top-24 -right-16 border-primary rounded-full z-10 border-[20px]"></div>
-              {/* black bg text */}
-              <div className="absolute top-10 left-56 z-[1]">
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 10,
+                  delay: 0.8,
+                }}
+                className="h-[180px] w-[180px] absolute top-24 -right-16 border-primary rounded-full z-10 border-[20px]"
+              ></motion.div>
+              {/* big text  section*/}
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 10,
+                  delay: 0.8,
+                }}
+                className="absolute top-10 left-56 z-[1]"
+              >
                 <h1 className="text-[7rem] scale-150 font-bold text-darkGray/40 leading-none">
                   Blvck Tumbler
                 </h1>
-              </div>
+              </motion.div>
             </div>
             {/* third div section  */}
             <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 10,
-              delay: 1.2,
-            }}>
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 10,
+                delay: 1.2,
+              }}
+            >
               <div className="text-lightOrange mt-[100px] md:mt-0 p-4 space-y-28">
                 <h1 className=" opacity-0 text-7xl font-bold leading-tight ml-14 ">
                   Blvck Tumbler
@@ -119,6 +144,38 @@ const Hero = () => {
             <div></div>
           </div>
         </div>
+        {/* sidebar menu section */}
+        {isSidabarOpen && 
+            <motion.aside 
+            initial={{x: '100%'}}
+            whileInView={{x:0}}
+            transition={{
+              type: 'spring',
+              stiffness: 160,
+              damping: 40,
+              restDelta: 0.05
+    
+            }}
+            className="absolute right-0 top-0 h-full w-36 bg-gradient-to-b from-primary/80 to-primaryDark/80 backdrop-blur-sm z-10">
+              <div className="w-full h-full flex justify-center items-center">
+                <div className="flex flex-col justify-center items-center  gap-6 text-white">
+                  {/* line */}
+                  <div className="w-[1px] h-[70px] bg-white"></div>
+                  {/* social icons */}
+                  <div className="inline-block p-2 rounded-full cursor-pointer border border-white">
+                    <FaFacebookF className="text-2xl" />
+                  </div>
+                  <div className="inline-block p-2 rounded-full cursor-pointer border border-white">
+                    <FaTwitter className="text-2xl" />
+                  </div>
+                  <div className="inline-block p-2 rounded-full cursor-pointer border border-white">
+                    <FaInstagram className="text-2xl" />
+                  </div>
+                  <div className="w-[1px] h-[70px] bg-white"></div>
+                </div>
+              </div>
+            </motion.aside>}
+    
       </section>
     </main>
   );
