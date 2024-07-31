@@ -1,7 +1,5 @@
+'use client'
 import React from "react";
-import bannerImg from "/public/coffee-cover.jpg";
-import appStoreImg from "/public/website/app_store.png";
-import playStoreImg from "/public/website/play_store.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -24,22 +22,49 @@ const AppBanner = () => {
       >
         <div>
           <div className="space-y-6 max-w-xl mx-auto">
-            <p className="text-2xl text-center sm:text-4xl font-semibold">
-              Download the app
-            </p>
-            <p className="text-center sm:px-20">
+            <motion.p 
+            initial={{opacity:0, y: 100}}
+            whileInView={{opacity:1, y:0}}
+            transition={{
+              type: 'spring',
+              stiffness: 100,
+              damping: 10,
+              delay: 0.2
+            }}
+            className="text-2xl text-center sm:text-4xl font-semibold">
+           Download the app
+            </motion.p>
+            <motion.p
+            initial={{opacity:0, y: 100}}
+            whileInView={{opacity:1, y:0}}
+            transition={{
+              type: 'spring',
+              stiffness: 100,
+              damping: 10,
+              delay: 0.3
+            }}
+            className="text-center sm:px-20">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
               natus cumque esse, eum doloribus
-            </p>
+            </motion.p>
             {/* images link  */}
-            <div className="flex justify-evenly">
+            <motion.div 
+            initial={{opacity:0, y: 100}}
+            whileInView={{opacity:1, y:0}}
+            transition={{
+              type: 'spring',
+              stiffness: 100,
+              damping: 10,
+              delay: 0.3
+            }}
+            className="flex justify-evenly items-center">
               <Link href="#" className="max-w-[150px] sm:max-w-[120px] md:max-w-[200px]">
                 <Image src='/website/app_store.png' alt="app store image" width={200} height={300}/>
               </Link>
               <Link href="#" className="max-w-[150px] sm:max-w-[120px] md:max-w-[200px]">
-                <Image src={playStoreImg} alt="play store image" width={200} height={300}/>
+                <Image src='/website/play_store.png' alt="play store image" width={200} height={300}/>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
