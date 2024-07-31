@@ -28,7 +28,7 @@ const Hero = () => {
             <div className="text-lightOrange mt-[100px] flex flex-col justify-end gap-14">
               <motion.h1
                 initial={{ opacity: 0, y: -100 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{
                   type: "spring",
                   stiffness: 100,
@@ -68,6 +68,7 @@ const Hero = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
+                viewport={{once:true}}
                 transition={{
                   type: "spring",
                   stiffness: 100,
@@ -113,6 +114,7 @@ const Hero = () => {
               </motion.div>
             </div>
             {/* third div section  */}
+            <div className="hidden lg:block">
             <motion.div
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
@@ -139,7 +141,7 @@ const Hero = () => {
                   <div className="absolute -top-6 -right-10 w-[250px] h-[190px] bg-darkGray/50"></div>
                 </div>
               </div>
-            </motion.div>
+            </motion.div></div>
 
             <div></div>
           </div>
@@ -156,7 +158,7 @@ const Hero = () => {
               restDelta: 0.05
     
             }}
-            className="absolute right-0 top-0 h-full w-36 bg-gradient-to-b from-primary/80 to-primaryDark/80 backdrop-blur-sm z-10">
+            className="absolute right-0 top-0 h-full w-36 bg-gradient-to-b from-primary/80 to-primaryDark/80 backdrop-blur-sm z-40">
               <div className="w-full h-full flex justify-center items-center">
                 <div className="flex flex-col justify-center items-center  gap-6 text-white">
                   {/* line */}
